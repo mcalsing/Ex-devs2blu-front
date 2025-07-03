@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questão 1</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-300 flex flex-col items-center mt-10 gap-1">
+  <h1 class="text-3xl mb-5">Calcular média</h1>
+
+  <form class="w-100 bg-slate-400 flex flex-col items-center gap-3 py-10 rounded-sm" onsubmit="calcular(event)">
+    <div>
+      <label class="font-bold text-lg">Nota 1:</label>
+      <input id="nota1" type="number" class="border-1 border-slate-300 rounded-sm px-2 py-1 focus:outline-none">  
+    </div>
+
+    <div>
+      <label class="font-bold text-lg">Nota 2:</label>
+      <input id="nota2" type="number" class="border-1 border-slate-300 rounded-sm px-2 py-1 focus:outline-none">  
+    </div>
+
+    <div>
+      <label class="font-bold text-lg">Nota 3:</label>
+      <input id="nota3" type="number" class="border-1 border-slate-300 rounded-sm px-2 py-1 focus:outline-none">  
+    </div>
+    <button type="submit" class="cursor-pointer bg-blue-800 text-slate-100 px-5 py-2 rounded-md">Calcular</button>
+  </form>
+
+  <p id="nota"></p>
+  <p id="situacao"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
