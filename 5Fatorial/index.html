@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 5</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="flex flex-col items-center bg-slate-100">
+  
+  <form onsubmit="calcular(event)" class="flex flex-col items-center gap-3">
+    <h1 class="text-2xl">Calcular fatorial</h1>
+    <input id="numero" type="number" class="border-1 border-slate-300 rounded-sm px-2 py-1.5 focus:outline-none">
+    <button type="submit" class="cursor-pointer bg-blue-800 text-slate-100 px-5 py-2 rounded-md">Calcular</button>
+  </form>
+
+  <p id="result" class="font-bold text-xl mt-4"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
