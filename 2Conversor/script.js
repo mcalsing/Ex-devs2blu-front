@@ -9,16 +9,16 @@ const converter = (moeda) => {
 
   switch (parseInt(moeda)) {
     case 1:
-      resultado.innerText = `Resultado: $ ${(valor / dolar).toFixed(2)}`
+      resultado.innerText = `Resultado da conversão: $ ${(valor / dolar).toFixed(2)}`
       break;
     case 2:
-      resultado.innerText = `Resultado: € ${(valor / euro).toFixed(2)}`
+      resultado.innerText = `Resultado da conversão: € ${(valor / euro).toFixed(2)}`
       break;
     case 3:
-      resultado.innerText = `Resultado: £ ${(valor / libra).toFixed(2)}`
+      resultado.innerText = `Resultado da conversão: £ ${(valor / libra).toFixed(2)}`
       break;
     case 4:
-      resultado.innerText = `Resultado: ₿ ${(valor / bitcoin).toFixed(5)}`
+      resultado.innerText = `Resultado da conversão: ₿ ${(valor / bitcoin).toFixed(5)}`
       break;
     default:
       resultado.innerText = 'Valor inválido'

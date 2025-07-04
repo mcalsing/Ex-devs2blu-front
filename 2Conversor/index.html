@@ -11,8 +11,12 @@
 
   <form class="w-100 bg-slate-400 flex flex-col items-center gap-3 py-10 rounded-sm" onsubmit="converter(event)">
 
-    <label class="font-bold text-lg">Valor a ser convertido:</label>
-    <input id="valor" type="number" class="border-1 border-slate-300 rounded-sm px-2 py-1.5 focus:outline-none">
+    <input 
+      id="valor" 
+      type="number" 
+      class="border-1 border-slate-300 rounded-sm px-2 py-1.5 focus:outline-none"
+      placeholder="Valor a ser convertido"
+    >
 
     <select class="focus:outline-none border-1 border-slate-300 rounded-sm px-2 py-1.5 w-62" onchange="converter(this.value)">
       <option value="0">Selecione uma moeda</option>
@@ -24,7 +28,7 @@
 
   </form>
 
-  <p id="resultado"></p>
+  <p id="resultado" class="mt-3 font-bold text-2xl"></p>
 
   <script src="script.js"></script>
 </body>
