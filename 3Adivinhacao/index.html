@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 3</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-blue-950 flex flex-col items-center">
+  
+  <form class="border-2 border-slate-400 p-5 flex flex-col gap-5 rounded-sm mt-10" onsubmit="numero(event)">
+    <h1 class="text-3xl text-white mb-4">Adivinhe o número!</h1>
+    <input id="chute" type="number" class="border-1 border-slate-300 rounded-sm px-2 py-1 text-white py-1.5 focus:outline-none">
+
+    <button type="submit" class="cursor-pointer bg-blue-800 text-slate-100 px-5 py-2 rounded-md">Chutar Número</button>
+  </form>
+  
+  <button
+  class="cursor-pointer bg-blue-800 text-slate-100 px-5 py-2 rounded-md mt-3"
+  onclick="reiniciar()"
+  >
+  Reiniciar Jogo
+</button>
+
+<p id="resultado" class="mt-3 font-bold text-2xl text-white"></p>
+<p id="resultadoTentativas" class="mt-3 font-bold text-2xl text-white"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
