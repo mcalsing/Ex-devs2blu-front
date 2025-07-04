@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-purple-700 flex flex-col items-center">
+
+  <h1 class="text-purple-200 text-3xl py-5">Tabuada</h1>
+
+  <form onsubmit="tabuada(event)" class="flex flex-col w-80 border-1 border-purble-400 p-5 gap-5 rounded-sm">
+    <input 
+      id="num" 
+      type="number" 
+      class="border-1 border-purple-400 rounded-sm px-2 py-1.5 focus:outline-none text-purple-200"
+      placeholder="Insira um número"
+    >
+    <button type="submit" class="cursor-pointer bg-purple-500 text-purple-200 px-5 py-2 rounded-md">Exibir tabuada</button>
+  </form>
+
+  <div id="resultado" class="flex gap-7 flex-wrap text-purple-200 mt-5 max-w-200"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
