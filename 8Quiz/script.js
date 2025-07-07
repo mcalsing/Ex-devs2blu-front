@@ -137,6 +137,7 @@ const proxima = () => {
             container.appendChild(resultado);
 
           } else {
+            // Valor ganho por responder a questão
             valorErrar.innerText = formatarPremioErrar(n);
             valorParar.innerText = formatarPremioParar(n);
             valorAcertar.innerText = formatarPremioAcertar(n);
@@ -153,6 +154,7 @@ const proxima = () => {
             container.appendChild(resultado);
 
           } else {
+            // Valor ganho por responder a questão
             valorErrar.innerText = formatarPremioErrar(n);
             valorParar.innerText = formatarPremioParar(n);
             valorAcertar.innerText = formatarPremioAcertar(n);
