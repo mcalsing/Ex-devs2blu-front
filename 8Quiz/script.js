@@ -20,38 +20,43 @@ const perguntas = [
   ['Qual propriedade CSS remove sublinhado de links?', 'text-style: none;', '*text-decoration: none;', 'font-decoration: none;', 'underline: false;', 'link-decoration: none;'],
 ];
 
+const container = document.getElementById('container');
 const divPerguntas = document.getElementById('div-perguntas');
-const nextButton = document.getElementById('next-button')
+const nextButton = document.getElementById('next-button');
+let somaAcertos = 0;
+
+// n itera sobre o array das questões sorteadas
+let n = 0
 
 // Sortear questões únicas para o quiz
 let questoesSorteadas = []
 for (j = 0; questoesSorteadas.length < 5; j++) {
   const randomNum = Math.floor(Math.random() * 10);
 
-  // Se o numero sorteado acima não estiver incluido no array, adiciona no array
+  // Se o número sorteado acima não estiver incluido no array, adiciona no array
   if (!questoesSorteadas.includes(randomNum)) {
     questoesSorteadas.push(randomNum)
   }
 }
 
-let n = 0
+const formatarResultado = (somaAcertos) => {
+  if (somaAcertos > 1) {
+    return `Você acertou ${somaAcertos} questões!`
+  } else if (somaAcertos === 1) {
+    return `Você acertou ${somaAcertos} questão`
+  } else {
+    return `Você não acertou nada!`
+  }
+}
+
 const proxima = () => {
-  console.log(perguntas[2])
-  console.log(questoesSorteadas[n])
   
   // Remove a questão anterior da tela
   divPerguntas.replaceChildren();
-
-  console.log(n)
-
-  // Desabilita o botão 'próxima' ao ter mostrado as 5 perguntas
-  if (n == 4 ) {
-    nextButton.setAttribute('disabled', '');
-    nextButton.className="cursor-pointer bg-slate-400 px-5 py-2 rounded-md"
-  }
-
+  
   for (i = 0; i <= 5; i++) {
     const questao = document.createElement('div');
+    // Pega o numero da questão sorteada (n) e itera sobre a pergunta e as alternativas, mostrando na tela
     let textoQuestao = perguntas[questoesSorteadas[n]][i];
 
     // Enunciado
@@ -67,29 +72,49 @@ const proxima = () => {
       questao.innerText = textoQuestao;
       questao.className = "bg-red-500 border-1 border-white text-white px-5 py-1 rounded-lg cursor-pointer hover:bg-red-400";
     
-      // Adiciona evento de click em cada questão
+      // Adiciona evento de click em cada questão e contabiliza o resultado do quiz
       questao.addEventListener('click', () => {
         if (ehCorreta) {
-          alert('Resposta correta');
+          somaAcertos += 1;
+          
+          // Condição de parada do quiz caso a última alternativa for correta
+          if (n == 5 ) {
+            container.replaceChildren();
+            const resultado = document.createElement('p');
+            resultado.innerText = formatarResultado(somaAcertos);
+            resultado.className = "text-2xl text-slate-100 ml-12";
+            container.appendChild(resultado);
+
+          } else {
+            // Ao clicar na alternativa, mostra a questão seguinte
+            proxima();
+          }
         } else {
-          alert('Resposta incorreta');
+
+          // Condição de parada do quiz caso a última alternativa for errada
+          if (n == 5 ) {
+            container.replaceChildren();
+            const resultado = document.createElement('p');
+            resultado.innerText = formatarResultado(somaAcertos);
+            resultado.className = "text-2xl text-slate-100 ml-13"
+            container.appendChild(resultado);
+
+          } else {
+            // Ao clicar na alternativa, mostra a questão seguinte
+            proxima();
+          }
         }
       });
     }
     divPerguntas.appendChild(questao); 
   }
-  n = n + 1;
-  console.log(questoesSorteadas)
+  n += 1;
 
   // Toca audio ao ir para a próxima pergunta
-/*   let audio = new Audio('showdomilhao.mp3');
+  /* let audio = new Audio('showdomilhao.mp3');
   audio.addEventListener('canplaythrough', function() {
     audio.play();
   }); */
 }
 
 proxima();
-
-const mainFunc = () => {
-
-}
