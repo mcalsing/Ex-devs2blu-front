@@ -28,6 +28,9 @@ let somaAcertos = 0;
 // n itera sobre o array das questões sorteadas
 let n = 0
 
+let audioSuspense = null;
+let suspenseTimeout = null; 
+
 // Sortear questões únicas para o quiz
 let questoesSorteadas = []
 for (j = 0; questoesSorteadas.length < 5; j++) {
@@ -39,6 +42,7 @@ for (j = 0; questoesSorteadas.length < 5; j++) {
   }
 }
 
+// Função para formatar o resultado
 const formatarResultado = (somaAcertos) => {
   if (somaAcertos > 1) {
     return `Você acertou ${somaAcertos} questões!`
@@ -50,6 +54,18 @@ const formatarResultado = (somaAcertos) => {
 }
 
 const proxima = () => {
+
+  if (suspenseTimeout) {
+    clearTimeout(suspenseTimeout);
+    suspenseTimeout = null;
+  }
+
+  // Pausa o áudio de suspense se estiver tocando
+  if (audioSuspense) {
+    audioSuspense.pause();
+    audioSuspense.currentTime = 0;
+    audioSuspense = null;
+  }
   
   // Remove a questão anterior da tela
   divPerguntas.replaceChildren();
@@ -90,7 +106,6 @@ const proxima = () => {
             proxima();
           }
         } else {
-
           // Condição de parada do quiz caso a última alternativa for errada
           if (n == 5 ) {
             container.replaceChildren();
@@ -111,10 +126,17 @@ const proxima = () => {
   n += 1;
 
   // Toca audio ao ir para a próxima pergunta
-  /* let audio = new Audio('showdomilhao.mp3');
-  audio.addEventListener('canplaythrough', function() {
-    audio.play();
-  }); */
+  let audio = new Audio('showdomilhao.mp3');
+  audio.addEventListener('canplaythrough', () => audio.play());
+  
+  // Se passar 10 segundos e a pergunta não estiver sido respondida, toca a música de suspense
+  suspenseTimeout = setTimeout(() => {
+    audioSuspense = new Audio('suspenseshowdomilhao.mp3');
+    audioSuspense.addEventListener('canplaythrough', () => {
+      audioSuspense.play();
+    });
+  }, 10000);
+
 }
 
 proxima();
