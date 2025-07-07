@@ -23,11 +23,17 @@ const perguntas = [
 const container = document.getElementById('container');
 const divPerguntas = document.getElementById('div-perguntas');
 const nextButton = document.getElementById('next-button');
+const valorErrar = document.getElementById('valor-errar');
+const valorParar = document.getElementById('valor-parar');
+const valorAcertar = document.getElementById('valor-acertar');
 let somaAcertos = 0;
+//let valorReceber = 0;
+//let premioTotal = 0
 
 // n itera sobre o array das questões sorteadas
 let n = 0
 
+let audio = null;
 let audioSuspense = null;
 let suspenseTimeout = null; 
 
@@ -45,13 +51,36 @@ for (j = 0; questoesSorteadas.length < 5; j++) {
 // Função para formatar o resultado
 const formatarResultado = (somaAcertos) => {
   if (somaAcertos > 1) {
+    /* premioTotal = somaAcertos * 3;
+    console.log(premioTotal); */
     return `Você acertou ${somaAcertos} questões!`
   } else if (somaAcertos === 1) {
-    return `Você acertou ${somaAcertos} questão`
+    //console.log(premioTotal);
+    return `Você acertou ${somaAcertos} questão.`
   } else {
-    return `Você não acertou nada!`
+    console.log(premioTotal);
+    return `Você não acertou nenhuma!`
   }
 }
+
+const formatarPremioErrar = (n) => {
+  //valorReceber = (n+1)*1;
+  return `${(n+1)*1} Pila`;
+}
+
+const formatarPremioParar = (n) => {
+  //valorReceber = (n+1)*2;
+  return `${(n+1)*2} Pila`
+}
+
+const formatarPremioAcertar = (n) => {
+  //valorReceber = (n+1)*3;
+  return `${(n+1)*3} Pila`
+}
+
+valorErrar.innerText = formatarPremioErrar(n);
+valorParar.innerText = formatarPremioParar(n);
+valorAcertar.innerText = formatarPremioAcertar(n);
 
 const proxima = () => {
 
@@ -78,14 +107,20 @@ const proxima = () => {
     // Enunciado
     if (i == 0) {
       questao.innerText = textoQuestao;
-      questao.className="w-96 h-20 bg-red-500 border-1 font-bold text-slate-100 border-white px-5 py-1 rounded-lg uppercase";
+      questao.className="w-96 h-20 bg-red-500 border-2 font-bold text-slate-100 border-white px-5 py-1 rounded-lg uppercase";
       // Alternativas
     } else {
       const ehCorreta = textoQuestao.startsWith('*');
       // Remove o * da questão correta
       textoQuestao = ehCorreta ? textoQuestao.slice(1) : textoQuestao;
 
-      questao.innerText = textoQuestao;
+      // Adiciona a numeração da questão em um circulo branco
+      questao.innerHTML = `
+        <span class="inline-flex items-center justify-center w-6 h-6 mr-2 rounded-full bg-white text-blue-600 text-xl font-bold">
+          ${i}
+        </span> ${textoQuestao}
+      `;
+      // Estiliza a alternativa
       questao.className = "bg-red-500 border-1 border-white text-white px-5 py-1 rounded-lg cursor-pointer hover:bg-red-400";
     
       // Adiciona evento de click em cada questão e contabiliza o resultado do quiz
@@ -102,6 +137,9 @@ const proxima = () => {
             container.appendChild(resultado);
 
           } else {
+            valorErrar.innerText = formatarPremioErrar(n);
+            valorParar.innerText = formatarPremioParar(n);
+            valorAcertar.innerText = formatarPremioAcertar(n);
             // Ao clicar na alternativa, mostra a questão seguinte
             proxima();
           }
@@ -115,6 +153,9 @@ const proxima = () => {
             container.appendChild(resultado);
 
           } else {
+            valorErrar.innerText = formatarPremioErrar(n);
+            valorParar.innerText = formatarPremioParar(n);
+            valorAcertar.innerText = formatarPremioAcertar(n);
             // Ao clicar na alternativa, mostra a questão seguinte
             proxima();
           }
@@ -126,7 +167,7 @@ const proxima = () => {
   n += 1;
 
   // Toca audio ao ir para a próxima pergunta
-  let audio = new Audio('showdomilhao.mp3');
+  audio = new Audio('showdomilhao.mp3');
   audio.addEventListener('canplaythrough', () => audio.play());
   
   // Se passar 10 segundos e a pergunta não estiver sido respondida, toca a música de suspense
@@ -135,7 +176,7 @@ const proxima = () => {
     audioSuspense.addEventListener('canplaythrough', () => {
       audioSuspense.play();
     });
-  }, 10000);
+  }, 15000);
 
 }
 
