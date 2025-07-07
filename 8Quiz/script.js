@@ -1,28 +1,24 @@
 const perguntas = [
-  ['pergunta1', '1111111', '1111111', '1111111', '1111111' ],
-  ['pergunta2', '2222222', '2222222', '2222222', '2222222' ],
-  ['pergunta3', '3333333', '3333333', '3333333', '3333333' ],
-  ['pergunta4', '4444444', '4444444', '4444444', '4444444' ],
-  ['pergunta5', '5555555', '5555555', '5555555', '5555555' ],
-  ['pergunta6', '6666666', '6666666', '6666666', '6666666' ],
-  ['pergunta7', '7777777', '7777777', '7777777', '7777777' ],
-  ['pergunta8', '8888888', '8888888', '8888888', '8888888' ],
-  ['pergunta9', '9999999', '9999999', '9999999', '9999999' ],
-  ['pergunta10', '0000000', '0000000', '0000000', '0000000' ],
-]
+  ['O que significa CSS?', '*Cascading Style Sheets', 'Creative Style System', 'Computer Style Syntax', 'Control Style System', 'Central Styling Sheets'],
+  
+  ['Qual propriedade CSS é usada para mudar a cor do texto?', 'background-color', '*color', 'font-color', 'text-style', 'text-color'],
 
-const alternativaCorretas = [
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-  'correta',
-]
+  ['Como aplicar uma cor de fundo em um elemento?', 'color: blue;', '*background-color: blue;', 'text-color: blue;', 'bgcolor: blue;', 'font-background: blue;'],
+
+  ['Qual seletor aplica estilo a todos os parágrafos <p>?', '.p', '#p', '*p', 'paragraph', '*p{}'],
+
+  ['Como deixar o texto em negrito com CSS?', '*font-weight: bold;', 'text-decoration: bold;', 'font-style: bold;', 'bold: true;', 'font: bold;'],
+
+  ['Qual valor da propriedade "position" fixa um elemento na tela mesmo com rolagem?', 'relative', 'absolute', '*fixed', 'sticky', 'scroll'],
+
+  ['Qual unidade relativa representa o tamanho da fonte em relação ao elemento pai?', '*em', 'px', '%', 'rem', 'vh'],
+
+  ['Como centralizar horizontalmente um elemento com margin?', '*margin: 0 auto;', 'margin: auto 0;', 'margin: center;', 'align: center;', 'text-align: center;'],
+
+  ['Qual propriedade controla o espaçamento interno de um elemento?', '*padding', 'margin', 'border', 'spacing', 'indent'],
+
+  ['Qual propriedade CSS remove sublinhado de links?', 'text-style: none;', '*text-decoration: none;', 'font-decoration: none;', 'underline: false;', 'link-decoration: none;'],
+];
 
 const divPerguntas = document.getElementById('div-perguntas');
 const nextButton = document.getElementById('next-button')
@@ -48,17 +44,38 @@ const proxima = () => {
 
   console.log(n)
 
-  // Desabilita o botão 'próxima' ao ter mostrados as 5 perguntas
+  // Desabilita o botão 'próxima' ao ter mostrado as 5 perguntas
   if (n == 4 ) {
-    // nextButton.disable = true;
     nextButton.setAttribute('disabled', '');
     nextButton.className="cursor-pointer bg-slate-400 px-5 py-2 rounded-md"
   }
 
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i <= 5; i++) {
     const questao = document.createElement('div');
-    questao.innerText = perguntas[questoesSorteadas[n]][i];
-    questao.className="flex flex-col bg-red-500 border-1 border-white px-5 py-1 rounded-lg";
+    let textoQuestao = perguntas[questoesSorteadas[n]][i];
+
+    // Enunciado
+    if (i == 0) {
+      questao.innerText = textoQuestao;
+      questao.className="w-96 h-20 bg-red-500 border-1 font-bold text-slate-100 border-white px-5 py-1 rounded-lg uppercase";
+      // Alternativas
+    } else {
+      const ehCorreta = textoQuestao.startsWith('*');
+      // Remove o * da questão correta
+      textoQuestao = ehCorreta ? textoQuestao.slice(1) : textoQuestao;
+
+      questao.innerText = textoQuestao;
+      questao.className = "bg-red-500 border-1 border-white text-white px-5 py-1 rounded-lg cursor-pointer hover:bg-red-400";
+    
+      // Adiciona evento de click em cada questão
+      questao.addEventListener('click', () => {
+        if (ehCorreta) {
+          alert('Resposta correta');
+        } else {
+          alert('Resposta incorreta');
+        }
+      });
+    }
     divPerguntas.appendChild(questao); 
   }
   n = n + 1;

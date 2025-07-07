@@ -9,38 +9,30 @@
 <body class="bg-slate-300 flex flex-col items-center mt-10 gap-1">
   <h1 class="text-3xl mb-5">Show do 10zão </h1>
 
-  <section id="container" class="w-100 bg-blue-800 flex flex-col items-center gap-2 py-10 px-2 rounded-sm">
+  <section id="container" class="w-100 bg-blue-800 flex flex-col gap-2 py-10 px-2 rounded-sm">
     
-    <div id="div-perguntas" class="flex flex-col gap-3">
-     
-      <!--
-        <div id="pergunta" class="flex flex-col bg-red-500 border-2 border-white px-5 py-1 rounded-lg"></div>
-    
-        <div id="alt1" class="flex flex-col bg-red-500 border-1 border-white px-5 py-1 rounded-lg"></div>
-        <div id="alt2" class="flex flex-col bg-red-500 border-1 border-white px-5 py-1 rounded-lg"></div>
-        <div id="alt3" class="flex flex-col bg-red-500 border-1 border-white px-5 py-1 rounded-lg"></div>
-        <div id="alt4" class="flex flex-col bg-red-500 border-1 border-white px-5 py-1 rounded-lg"></div>
-        <div id="alt5" class="flex flex-col bg-red-500 border-1 border-white px-5 py-1 rounded-lg"></div>
-      
-      -->
+  <!-- Div das perguntas -->
+    <div id="div-perguntas" class="flex flex-col gap-3 max-w-60"></div>
 
+  <!-- Div valores -->
+    <div class="flex flex-col items-center">
+      <div class="flex gap-5">
+        <div class="flex flex-col">
+          <div class="bg-yellow-500 text-red-500 font-bold text-2xl px-3 py-1 rounded-md">1 Pila</div>
+          <span class="font-bold text-white pl-5">ERRAR</span>
+        </div>
+        <div class="flex flex-col">
+          <div class="bg-yellow-500 text-red-500 font-bold text-2xl px-3 py-1 rounded-md">2 Pila</div>
+          <span class="font-bold text-white pl-5">PARAR</span>
+        </div>
+        <div class="flex flex-col">
+          <div class="bg-yellow-500 text-red-500 font-bold text-2xl px-3 py-1 rounded-md">3 Pila</div>
+          <span class="font-bold text-white pl-2">ACERTAR</span>
+        </div>
+      </div>
+      <button id="next-button" class="cursor-pointer bg-blue-500 px-5 py-2 rounded-md w-fit" onclick="proxima()">Próxima</button>
     </div>
-    
-    <div class="flex gap-5">
-      <div class="flex flex-col">
-        <div class="cursor-pointer bg-yellow-500 text-red-500 font-bold text-2xl px-3 py-1 rounded-md">1 Pila</div>
-        <span class="font-bold text-white pl-5">ERRAR</span>
-      </div>
-      <div class="flex flex-col">
-        <div class="cursor-pointer bg-yellow-500 text-red-500 font-bold text-2xl px-3 py-1 rounded-md">2 Pila</div>
-        <span class="font-bold text-white pl-5">PARAR</span>
-      </div>
-      <div class="flex flex-col">
-        <div class="cursor-pointer bg-yellow-500 text-red-500 font-bold text-2xl px-3 py-1 rounded-md">3 Pila</div>
-        <span class="font-bold text-white pl-2">ACERTAR</span>
-      </div>
-    </div>
-    <button id="next-button" class="cursor-pointer bg-blue-500 px-5 py-2 rounded-md" onclick="proxima()">Próxima</button>
+
   </section>
 
   <p id="resultado" class="text-2xl"></p>
