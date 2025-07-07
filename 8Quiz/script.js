@@ -58,7 +58,7 @@ const formatarResultado = (somaAcertos) => {
     //console.log(premioTotal);
     return `Você acertou ${somaAcertos} questão.`
   } else {
-    console.log(premioTotal);
+    //console.log(premioTotal);
     return `Você não acertou nenhuma!`
   }
 }
